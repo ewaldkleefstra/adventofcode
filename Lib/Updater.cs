@@ -12,6 +12,7 @@ using AdventOfCode.Generator;
 using AdventOfCode.Model;
 using AngleSharp;
 using AngleSharp.Io;
+using Microsoft.CodeAnalysis.Text;
 
 namespace AdventOfCode;
 
@@ -63,10 +64,18 @@ class Updater {
 
     private string GetSession() {
         if (!Environment.GetEnvironmentVariables().Contains("SESSION")) {
-            throw new AocCommuncationError("Specify SESSION environment variable", null);
+            string session = File.ReadAllText("./session.txt");
+     
+            if (session == "")
+            {
+                throw new AocCommuncationError("Specify SESSION environment variable", null);
+            }
+
+            return session;
         }
         return Environment.GetEnvironmentVariable("SESSION");
     }
+
     private IBrowsingContext GetContext() {
 
         var context = BrowsingContext.New(Configuration.Default
