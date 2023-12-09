@@ -58,6 +58,8 @@ it in your console like this
 
  export SESSION=73a37e9a72a...
 
+or in a session.txt file in the root of the project.
+
 then run the app with
 
  update [year]/[day]   Prepares a folder for the given day, updates the input,

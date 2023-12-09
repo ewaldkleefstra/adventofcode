@@ -15,13 +15,13 @@ class ProblemName : Attribute {
 }
 
 interface Solver {
-    object PartOne(string input);
-    object PartTwo(string input) => null;
+    object PartOne(string[] input);
+    object PartTwo(string[] input) => null;
 }
 
 static class SolverExtensions {
 
-    public static IEnumerable<object> Solve(this Solver solver, string input) {
+    public static IEnumerable<object> Solve(this Solver solver, string[] input) {
         yield return solver.PartOne(input);
         var res = solver.PartTwo(input);
         if (res != null) {
@@ -80,7 +80,7 @@ record SolverResult(string[] answers, string[] errors);
 
 class Runner {
 
-    private static string GetNormalizedInput(string file) {
+    private static string[] GetNormalizedInput(string file) {
         var input = File.ReadAllText(file);
 
         // on Windows we have "\r\n", not sure if this causes more harm or not
@@ -89,7 +89,7 @@ class Runner {
         if (input.EndsWith("\n")) {
             input = input.Substring(0, input.Length - 1);
         }
-        return input;
+        return input.Split("\n");
     }
 
     public static SolverResult RunSolver(Solver solver) {

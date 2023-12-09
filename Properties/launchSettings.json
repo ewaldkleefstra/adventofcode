@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "adventofcode": {
+      "commandName": "Project",
+      "commandLineArgs": "2023/01",
+      "workingDirectory": "C:\\projects\\Private\\adventofcode"
+    }
+  }
+}
